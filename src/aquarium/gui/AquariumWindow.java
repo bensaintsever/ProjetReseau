@@ -41,6 +41,7 @@ public class AquariumWindow extends JFrame {
 		e.scheduleWithFixedDelay(new Runnable() {
 			@Override
 			public void run() {
+				
 				aquarium.animate();
 			}
 		}, 0, 100, TimeUnit.MILLISECONDS);

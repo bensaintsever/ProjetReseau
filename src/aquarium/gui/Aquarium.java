@@ -9,6 +9,7 @@ import java.util.List;
 import javax.swing.JPanel;
 
 import aquarium.items.AquariumItem;
+import aquarium.items.Fish;
 import aquarium.items.MobileItem;
 import aquarium.items.Seastone;
 import aquarium.items.Seaweed;
@@ -74,6 +75,14 @@ public class Aquarium extends JPanel {
 			if (ai.sink(items))
 				items.add(ai);
 		}
+		
+		for (int i = 0; i < 9; i++) {
+			MobileItem ai = new Fish();
+			if (ai.sink(items))
+				items.add(ai);
+		}
+		
+		
 	}
 
 	/**

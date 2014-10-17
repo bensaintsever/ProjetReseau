@@ -12,5 +12,6 @@ public class Main  {
 		Aquarium aquarium = new Aquarium();
 		AquariumWindow animation = new AquariumWindow(aquarium);
 		animation.displayOnscreen();
+
 	}
 }

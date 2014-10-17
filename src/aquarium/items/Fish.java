@@ -1,25 +1,27 @@
 package aquarium.items;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import aquarium.util.RandomNumber;
 
 public class Fish extends MobileItem {
 	private static final int MIN_WIDTH = 30, MAX_WIDTH = 60;
-	private static final String img = "image/seastone.png";
+	private static String[] img= {"image/fish.png", "image/fish2.png","image/dolphin.gif", "image/fish3.png"};
 
 	public Fish() {
-		super(MIN_WIDTH, MAX_WIDTH, img);
+		super(MIN_WIDTH, MAX_WIDTH, img[RandomNumber.randomValue(0, img.length - 1)]);
 	}
 	public Fish(int width) {
-		super(width, img);
+		super(width, img[RandomNumber.randomValue(0, img.length - 1)]);
 	}
-	@Override
+
 	public AquariumItem target(List<AquariumItem> neighbours) {
-		// TODO Auto-generated method stub
-		return null;
+		return neighbours.get(RandomNumber.randomValue(0, neighbours.size() - 1));
 	}
-	@Override
+
 	public int getMaximalWidth() {
 		// TODO Auto-generated method stub
-		return 0;
+		return MAX_WIDTH;
 	}
 }
