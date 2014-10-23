@@ -7,6 +7,7 @@ import java.util.List;
  * A MobileItem is an AquariumItem capable of changing its position (e.g., fish)
  */
 public abstract class MobileItem extends AquariumItem {
+		private int cpt = 0;
 
 	/**
 	 * Destination point of the current movement
@@ -60,7 +61,7 @@ public abstract class MobileItem extends AquariumItem {
 		int dx = (destination.getPosition().x - getPosition().x);
 		int dy = (destination.getPosition().y - getPosition().y);
 		double direction = (float)Math.atan2(dy, dx);
-		double speed = 1.0+v;
+		double speed = 5.0+v;
 		int modx = (int) (speed * Math.cos(direction));
 		int mody = (int) (speed * Math.sin(direction));
 		Point p = getPosition();
@@ -83,8 +84,11 @@ public abstract class MobileItem extends AquariumItem {
 	 * @param neighbours
 	 */
 	public void move(List<AquariumItem> neighbours) {
-		if (destination == null || overlap(destination))
+		if (destination == null || cpt == 1000 /*overlap(destination)*/){
 			destination = target(neighbours);
+			cpt = 0;
+		}else
+			cpt += 100;
 		move();
 	}
 }

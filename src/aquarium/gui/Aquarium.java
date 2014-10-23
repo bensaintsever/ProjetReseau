@@ -1,10 +1,18 @@
 package aquarium.gui;
 
 import java.awt.Color;
+
+import static java.util.concurrent.TimeUnit.*;
+
 import java.awt.Graphics;
 import java.awt.Image;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import javax.swing.JPanel;
 
@@ -18,8 +26,10 @@ import aquarium.items.Seaweed;
  * An Aquarium is a Java graphical container that extends the JPanel class in
  * order to display graphical elements.
  */
-public class Aquarium extends JPanel {
+public class Aquarium extends JPanel{
 
+
+	
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -76,11 +86,15 @@ public class Aquarium extends JPanel {
 				items.add(ai);
 		}
 		
+		
 		for (int i = 0; i < 9; i++) {
 			MobileItem ai = new Fish();
 			if (ai.sink(items))
 				items.add(ai);
 		}
+		
+		
+		
 		
 		
 	}
@@ -104,10 +118,15 @@ public class Aquarium extends JPanel {
 	 * screen
 	 */
 	public void animate() {
-		for (AquariumItem item : items)
-			if (item instanceof MobileItem)
-				((MobileItem) item).move(items);
-		updateScreen();
+		
+			for (AquariumItem item : items){
+					if (item instanceof MobileItem){
+						((MobileItem) item).move(items);
+					}
+				
+				
+			}		
+			updateScreen();
 	}
 
 	/*
@@ -144,5 +163,6 @@ public class Aquarium extends JPanel {
 		}
 		this.repaint();
 	}
+
 
 }
