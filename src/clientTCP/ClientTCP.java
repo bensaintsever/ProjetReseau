@@ -7,9 +7,9 @@ import java.net.Socket;
 
 public class ClientTCP {
 
-	public ClientTCP(int server){
+	public ClientTCP(int server, int portNumber){
 		try {
-			ServerSocket s = new ServerSocket(server);
+			ServerSocket s = new ServerSocket(server, portNumber);
 
 			Socket client = s.accept();
 			
