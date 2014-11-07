@@ -22,9 +22,9 @@ public class ServeurTCP {
 		try{
 				ecoute = new ServerSocket(portNumber);
 	
-			out = new PrintWriter(client.getOutputStream(), true);
-			in = new BufferedReader(new InputStreamReader(client.getInputStream()));
-			System.out.println("Serveur reçois : "+ receive());
+			//out = new PrintWriter(client.getOutputStream(), true);
+			//in = new BufferedReader(new InputStreamReader(client.getInputStream()));
+			//System.out.println("Serveur reçois : "+ receive());
 		
 		
 		}catch(Exception e){
@@ -38,6 +38,7 @@ public class ServeurTCP {
 		try {
 			client = ecoute.accept();
 		} catch (IOException e) {
+			System.out.println("bad accept !");
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
