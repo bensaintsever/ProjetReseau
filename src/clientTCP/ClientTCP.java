@@ -41,7 +41,7 @@ public class ClientTCP {
 	
 	
 	public void send(String message){
-		ps = new PrintWriter(os);
+		ps = new PrintWriter(os, true);
 		
 		ps.println(message);
 		
