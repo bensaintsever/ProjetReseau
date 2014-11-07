@@ -93,11 +93,29 @@ public class Aquarium extends JPanel{
 				items.add(ai);
 		}
 		
-		
-		
-		
-		
 	}
+	
+	/**
+	 * Retourne la liste des elements de l'aquarium
+	 */
+	public List<AquariumItem> getItem(){
+		return this.items;
+	}
+	
+	/**
+	 * Ajoute un element dans l'aquarium
+	 */
+	public void addItem(AquariumItem it){
+		this.items.add(it);
+	}
+	
+	/**
+	 * Supprime un element dans l'aquarium
+	 */
+	public void removeItem(AquariumItem it){
+		this.items.remove(it);
+	}
+	
 
 	/**
 	 * @return the width of the Aquarium

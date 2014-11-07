@@ -4,6 +4,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 
 import clientTCP.ClientTCP;
 import ServeurTCP.ServeurTCP;
@@ -17,10 +18,20 @@ public class Main {
 	
 	
 	public static void main(String[] args) {
-		/*Aquarium aquarium = new Aquarium();
+		Aquarium aquarium = new Aquarium();
 		AquariumWindow animation = new AquariumWindow(aquarium);
-		animation.displayOnscreen();*/
-		ServeurTCP serveur = new ServeurTCP(7776);
+		animation.displayOnscreen();
+	
+		
+		
+		
+		/*Autoriser le client a avoir son poisson
+		si on recois une demande de move alors on move le poisson vers un target correspondant*/
+		
+		
+		
+		
+		ServeurTCP serveur = new ServeurTCP(7763);
 		
 		/*new Thread(new Runnable()
 			{
@@ -31,17 +42,31 @@ public class Main {
 			}
 		).start();*/
 		
-		ClientTCP client;
 		
+		
+
+		int i = 0;
 		while(true){
 			serveur.accept();
+
 			
-			client = new ClientTCP("127.0.0.1",7776);
-			client.send("Coucou");
-			client.close();
+			String commande1 = serveur.receive();
+			if (commande1.equals("Add me")){
+				serveur.send("aquarium!addfish"+getcoordonneefish+gettargetfish);
+				
+			}
 			
-			serveur.receive();
+			
+			
+			serveur.send("salut suzen");
+			serveur.closeClient();
+			//serveur.closeServeur();
+			i++;
+			
+			if(i > 5)//Temporaire car limite le nombre de boucle
+				break;
 		}
+		serveur.closeServeur();
 		
 		
 	}

@@ -46,8 +46,11 @@ public class ServeurTCP {
 	}
 	
 	public void send(String message){
+		try{
+		out = new PrintWriter(client.getOutputStream(), true);
 		out.println(message);
-		
+	}catch(Exception e){
+		System.out.println(e.toString());}
 	}
 	
 	public String receive(){
