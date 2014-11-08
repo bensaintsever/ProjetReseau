@@ -5,11 +5,12 @@ import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
-
+import DonneeClient.Client;
 import clientTCP.ClientTCP;
 import ServeurTCP.ServeurTCP;
 import aquarium.gui.AquariumWindow;
 import aquarium.gui.Aquarium;
+import aquarium.items.Fish;
 
 /**
  * Starting point of the Aquarium application
@@ -28,42 +29,65 @@ public class Main {
 		/*Autoriser le client a avoir son poisson
 		si on recois une demande de move alors on move le poisson vers un target correspondant*/
 		
+                /* Ajouter au client le parametre qui designe le nom d'un machien (realiser un getByname peut etre)*/
 		
 		
-		
+                
+                 /****************Protocole****************/
+                        
+                    String AddFish = "aquarium!addfish!";
+                    String DeleteFish = "aquarium!deletefish";
+                        
+                 /******************************************/
+                
+                
+               	
 		ServeurTCP serveur = new ServeurTCP(7763);
 		
-		/*new Thread(new Runnable()
-			{
-				public void run(){
-					
-					
-				}
-			}
-		).start();*/
+                //Preparation des données clients
+                Client c = new Client();
+				
 		
-		
-		
-
+                
+                //AJOUTER THREAD ! + SYNCHRO !
+                /**************** WIP *****************/
+                
+                /**************************************/
+                
 		int i = 0;
 		while(true){
+                        //Ecoute du serveur
 			serveur.accept();
 
-			
+                        //Ajout d'un poisson client
+                        c.addClient();
+
+                        //Reception d'un commande provenant du client
 			String commande1 = serveur.receive();
+                        
+                        
+                        
+                        //Interprétation commandes
 			if (commande1.equals("Add me")){
-				serveur.send("aquarium!addfish"+getcoordonneefish+gettargetfish);
+                            aquarium.addFish();//Ajout d'un poisson dans l'aquarium
+                            c.addClient(); //Ajout reference d'un nouveau client
+                            
+                            Fish poisson = aquarium.getFish(c.getIndice());//On recupere l'objet Fish que l'on souhaite créer
+                            		
+                            
+                            //On envoi aux clients la nouvelle position du poisson
+                            serveur.send(AddFish+poisson.getPosition());
 				
 			}
 			
 			
-			
-			serveur.send("salut suzen");
+			//Deconnection avec le client
 			serveur.closeClient();
-			//serveur.closeServeur();
+                        
+                        
+
 			i++;
-			
-			if(i > 5)//Temporaire car limite le nombre de boucle
+			if(i >= 1 )//Temporaire car limite le nombre de boucle
 				break;
 		}
 		serveur.closeServeur();
@@ -71,3 +95,11 @@ public class Main {
 		
 	}
 }
+/*new Thread(new Runnable()
+			{
+				public void run(){
+					
+					
+				}
+			}
+		).start();*/
