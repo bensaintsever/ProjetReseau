@@ -96,17 +96,19 @@ public class Aquarium extends JPanel{
 	}
 	
 	/**
-	 * Retourne la liste des elements de l'aquarium
-	 */
-	public List<AquariumItem> getItem(){
-		return this.items;
+	 * Retourne le poisson ciblé par l'indice (attention ce doit etre un poisson !)
+         */
+	public Fish getFish(int indice){
+     		return (Fish)this.items.get(indice);
 	}
 	
 	/**
-	 * Ajoute un element dans l'aquarium
+	 * Ajoute un element poisson dans l'aquarium
 	 */
-	public void addItem(AquariumItem it){
-		this.items.add(it);
+	public void addFish(){
+                MobileItem it = new Fish();
+		if(it.sink(items))
+                        this.items.add(it);
 	}
 	
 	/**
