@@ -12,14 +12,14 @@ import java.util.ArrayList;
  */
 public class Client {
     
-    private ArrayList<Client> IdClient;
+    private ArrayList<ClientTmp> IdClient;
     
     public Client(){
-        IdClient = new ArrayList<Client>();
+        IdClient = new ArrayList<ClientTmp>();
     }
     
     public void addClient(){
-        IdClient.add(IdClient.size());
+        IdClient.add(new ClientTmp(IdClient.size()));
         
     }
     
