@@ -8,33 +8,30 @@ import java.util.ArrayList;
 
 /**
  *
- * @author benjamin
+ * @author benjamin et sezen ^^
  */
 public class Client {
     
-    private ArrayList IdClient;
-    private int indice;
+    private ArrayList<Integer> IdClient;
     
     public Client(){
-        IdClient = new ArrayList();
+        IdClient = new ArrayList<Integer>();
     }
     
     public void addClient(){
-        IdClient.add(indice);
-        indice++;
+        IdClient.add(IdClient.size());
         
     }
     
-    public void deleteClient(){
+    public void deleteClient(int idClient){
         try{
-             if (indice > 0)
-                indice--;
+             IdClient.remove(idClient);
         }catch(Exception e){System.err.println("Impossible de supprimer un client");}
        
     }
     
     public int getIndice(){
-        return indice--;
+        return IdClient.size();
     }
     
     

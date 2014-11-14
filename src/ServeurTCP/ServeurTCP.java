@@ -20,7 +20,8 @@ public class ServeurTCP {
 	
 	public ServeurTCP(int portNumber){
 		try{
-				ecoute = new ServerSocket(portNumber);
+			
+			ecoute = new ServerSocket(portNumber);
 	
 			//out = new PrintWriter(client.getOutputStream(), true);
 			//in = new BufferedReader(new InputStreamReader(client.getInputStream()));
