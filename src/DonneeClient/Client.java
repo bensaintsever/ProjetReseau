@@ -12,10 +12,10 @@ import java.util.ArrayList;
  */
 public class Client {
     
-    private ArrayList<Integer> IdClient;
+    private ArrayList<Client> IdClient;
     
     public Client(){
-        IdClient = new ArrayList<Integer>();
+        IdClient = new ArrayList<Client>();
     }
     
     public void addClient(){
