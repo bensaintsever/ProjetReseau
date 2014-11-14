@@ -16,6 +16,17 @@ import aquarium.gui.Aquarium;
  */
 public class Main {
 	
+	public static void handleInstruction(String inst, Aquarium aq){
+		//split instruction
+		instructions = inst.split("!");
+		
+		//evaluate
+		if(instructions.get(0).equals("addFish")){
+			aquarium.addItem(new Fish(instructions.get(3))); //width?
+			//aquarium. - move the fish to first position?
+		}
+	}
+	
 	
 	public static void main(String[] args) {
 		Aquarium aquarium = new Aquarium();
@@ -55,10 +66,14 @@ public class Main {
 		}
 		
 		int i = 0;
-		while(true){
-			
-			//check every second to see fishies are changed or moved
 		
+		Timer time = new Timer();
+		while(true){
+			time.scheduleAtFixedRate(new TimerTask() {
+				  public void run() {
+				    handleInstruction(client.receive(), aquarium);
+				  }
+				}, 1, SECONDS);
 		}	
 		
 		client.close();
