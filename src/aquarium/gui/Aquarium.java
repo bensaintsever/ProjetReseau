@@ -143,7 +143,12 @@ public class Aquarium extends JPanel{
 					if (item instanceof MobileItem){
 						((MobileItem) item).move(items);
 					}
-				
+					if (item instanceof Fish){ //collision
+						for(AquariumItem rock : items){
+							if(rock instanceof Seastone && rock.getPosition().equals(item.getPosition()))
+								removeItem(item);
+						}
+					}
 				
 			}		
 			updateScreen();

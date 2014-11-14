@@ -7,7 +7,7 @@ package DonneeClient;
 import java.util.ArrayList;
 
 /**
- *
+ * these clients need to be associated with their sockets!!!
  * @author benjamin et sezen ^^
  */
 public class Client {
