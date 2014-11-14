@@ -30,8 +30,8 @@ public class Main {
 		
 		
 		
+		ClientTCP client;
 		
-		ServeurTCP serveur = new ServeurTCP(7763);
 		
 		/*new Thread(new Runnable()
 			{
@@ -43,31 +43,23 @@ public class Main {
 		).start();*/
 		
 		
-		
+		ArrayList<AquariumItem> mine = aquarium.getItems();
 
+		client = new ClientTCP("10.0.206.6",7760);
+		client.send("Add me"); //or whatever to get permission
+		
+		// receive authorisation
+		
+		for(int i = 0; i < items.size(); i++){
+			client.send("addFish!"+ i +"!" + items.get(i).getWidth() +"!"+ items.get(i).getPosition().getX() + "!" + items.get(i).getPosition().getY())
+		}
+		
 		int i = 0;
 		while(true){
-			serveur.accept();
-
 			
-			String commande1 = serveur.receive();
-			if (commande1.equals("Add me")){
-				serveur.send("aquarium!addfish"+getcoordonneefish+gettargetfish);
-				
-			}
-			
-			
-			
-			serveur.send("salut suzen");
-			serveur.closeClient();
-			//serveur.closeServeur();
-			i++;
-			
-			if(i > 5)//Temporaire car limite le nombre de boucle
-				break;
-		}
-		serveur.closeServeur();
+			//check every second to see fishies are changed or moved
 		
+		}	
 		
-	}
+		client.close();
 }
