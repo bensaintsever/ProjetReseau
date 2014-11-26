@@ -22,8 +22,8 @@ public class Main {
 		
 		//evaluate
 		if(instructions.get(0).equals("addFish")){
-			aquarium.addItem(new Fish(instructions.get(3))); //width?
-			//aquarium. - move the fish to first position?
+			aquarium.addItem(new Fish(instructions.get(2))); //width?
+			aquarium.getItem().get(aquarium.getItem().size()).setPosition(new Point(instructions.get(4), instructions.get(5)));
 		}
 	}
 	
@@ -42,7 +42,7 @@ public class Main {
 		
 		
 		ClientTCP client;
-		
+		int numClient;
 		
 		/*new Thread(new Runnable()
 			{
@@ -60,6 +60,7 @@ public class Main {
 		client.send("Add me"); //or whatever to get permission
 		
 		// receive authorisation
+		numClient = client.receive();
 		
 		for(int i = 0; i < items.size(); i++){
 			client.send("addFish!"+ i +"!" + items.get(i).getWidth() +"!"+ items.get(i).getPosition().getX() + "!" + items.get(i).getPosition().getY())
