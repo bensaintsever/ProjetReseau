@@ -45,7 +45,9 @@ public class ServeurTCP {
 		}
 		
 	}
-	
+	public Socket getSocket(){
+            return client;
+        }
 	public void send(String message){
 		try{
 		out = new PrintWriter(client.getOutputStream(), true);

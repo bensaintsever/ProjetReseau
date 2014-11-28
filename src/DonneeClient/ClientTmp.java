@@ -4,10 +4,12 @@ import java.awt.Point;
 import java.util.ArrayList;
 
 import aquarium.items.AquariumItem;
+import java.net.Socket;
 
 
 public class ClientTmp {
 	private int clientId;
+        private Socket clientSocket;//UTILE ?
 	private ArrayList<AquariumItem> clientsFish;
 	
 	/*
@@ -40,5 +42,8 @@ public class ClientTmp {
 		return clientsFish.get(index).getPosition();
 		
 	}
+        public Socket getSocketClient(){
+                return clientSocket;
+        }
 	
 }

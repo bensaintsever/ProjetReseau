@@ -11,11 +11,14 @@ import ServeurTCP.ServeurTCP;
 import aquarium.gui.AquariumWindow;
 import aquarium.gui.Aquarium;
 import aquarium.items.Fish;
+import ServeurThread.ServeurInit;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 
 /**
  * Starting point of the Aquarium application
  */
-public class Main {
+public class Main{
 	
 	
 	public static void main(String[] args) {
@@ -24,106 +27,55 @@ public class Main {
 		animation.displayOnscreen();
 	
                 ArrayList<Thread> t = new ArrayList<>();
-                Thread t1;
                 
-               
+                //Creer 10 Thread maximum, ils gerent par une file les differents threads 
+                final ScheduledExecutorService t1 = Executors.newScheduledThreadPool(10);
+                
+                
 		
-		
-		/*Autoriser le client a avoir son poisson
-		si on recois une demande de move alors on move le poisson vers un target correspondant*/
-		
-                /* Ajouter au client le parametre qui designe le nom d'un machien (realiser un getByname peut etre)*/
+                /* Ajouter au client le parametre qui designe le nom d'un machine (realiser un getByname peut etre)*/
 		
 		
                  //Preparation des données clients
-                Client c = new Client();
-                 /****************Protocole****************/
-                        
-                    String AddFish = "aquarium!addfish!";
-                    String DeleteFish = "aquarium!deletefish";
-                    //String SendData = c.getCoordonnees()+ "!"+c.getTaille()+"!"+c.getImagesBuffer();
-                    //String Image = c.getImage()
-                        
-                    /* LIRE IMAGE
-                    File file = (File)obj;
-                    FileInputStream fis = new FileInputStream(file);
-                    JPEGImageDecoder decoder = JPEGCodec.createJPEGDecoder(fis);
-                    BufferedImage image = decoder.decodeAsBufferedImage();
-                    fis.close();
-                    
-                    */
-                    
-                    
-                 /******************************************/
-                
+                Client c = new Client();            
                 
                	
 		ServeurTCP serveur = new ServeurTCP(7763);
-		
-               
-				
-		
-                
-                //AJOUTER THREAD ! + SYNCHRO !
-                /**************** WIP *****************/
-                
-                //Quand on ajout une information
-                //serveur.send(SendData);
-                
-                
-                
-                
-                /**************************************/
-                
-                t1 = new Thread(new Runnable()
-			{
-				public void run(){
-					
-					
-				
+
+                //Thread General Serveur
+                t1.execute(new Runnable() {
+
+                    
+                    public void run() {
+                        
 			
-                
-                
-                    int i = 0;
-                    while(true){
-                            //Ecoute du serveur
-                            serveur.accept();
-
-                            //Ajout d'un poisson client
-                            c.addClient();
-
-                            //Reception d'un commande provenant du client
-                            String commande1 = serveur.receive();
-
-
-
-                            //Interprétation commandes
-                            if (commande1.equals("Add me")){
-                                aquarium.addFish();//Ajout d'un poisson dans l'aquarium
-                                c.addClient(); //Ajout reference d'un nouveau client
-
-                                Fish poisson = aquarium.getFish(c.getIndice());//On recupere l'objet Fish que l'on souhaite créer
-
-
-                                //On envoi aux clients la nouvelle position du poisson
-                                serveur.send(AddFish+poisson.getPosition());
-
-                            }
+			try{	
+					
+                            int i = 0;
+                            while(true){
+                                    //Ecoute du serveur
+                                    serveur.accept();
+                                  
+                                    
+                                    ServeurInit sInit = new ServeurInit(serveur);
+                                    sInit.start();
+                                    
+                                    /************** WIP ******************
+                                    ServeurCommunication sCom = new ServeurCom(serveur);
+                                    sCom.start();
+                                    *************************************/
+                                    
+                                    //Ajout d'un poisson client
+                                    c.addClient();
+                                    
                  
+                            }
+                            
+                        }catch(RuntimeException e){
+                            e.printStackTrace();}
+                                
                     }
-                    }
-                }
-		).start();
-		
-		
-		
-	}
-}
-/*new Thread(new Runnable()
-			{
-				public void run(){
-					
-					
-				}
-			}
-		).start();*/
+                        
+                });
+
+}}
