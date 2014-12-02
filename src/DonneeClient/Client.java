@@ -1,38 +1,54 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package DonneeClient;
+
+import java.awt.Point;
 import java.util.ArrayList;
 
-/**
- * these clients need to be associated with their sockets!!!
- * @author benjamin et sezen ^^
- */
+import aquarium.items.AquariumItem;
+import java.net.Socket;
+
+
 public class Client {
-    
-    private ArrayList<ClientTmp> IdClient;
-    
-    public Client(){
-        IdClient = new ArrayList<ClientTmp>();
-    }
-    
-    public void addClient(){
-        IdClient.add(new ClientTmp(IdClient.size()));
+	private int clientId;
+        private Socket clientSocket;//UTILE ?
+	private ArrayList<AquariumItem> clientsFish;
+	
+	/*
+	 * Constructeur de donnée client, permettant de stocker des numéros clients (ID),
+	 * ainsi que les item de l'aquarium
+	 * 
+	 * arg: 
+	 * 
+	 */
+	public Client(){
+		this.clientId = 0;
+		clientsFish = new ArrayList<AquariumItem>();
+	}
+	
+	public Client(int clientId, ArrayList<AquariumItem> items){
+		this.clientId = clientId;
+		clientsFish = new ArrayList<AquariumItem>();
+		
+		for (int i = 0; i < items.size(); i++)
+			clientsFish.add(items.get(i)); //Fish should be cloned ideally
+	}
         
-    }
-    
-    public void deleteClient(int idClient){
-        try{
-             IdClient.remove(idClient);
-        }catch(Exception e){System.err.println("Impossible de supprimer un client");}
-       
-    }
-    
-    public int getIndice(){
-        return IdClient.size();
-    }
-    
-    
+        
+        public void addClient(int clientId){
+            this.clientId = clientId;
+        }
+	
+	public void addFish(AquariumItem fish){
+		clientsFish.add(fish);
+		
+	}
+	
+	
+	public Point getPosition(int index){
+		return clientsFish.get(index).getPosition();
+		
+	}
+        public Socket getSocketClient(){
+                return clientSocket;
+        }
+	
 }
