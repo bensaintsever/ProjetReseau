@@ -5,7 +5,7 @@ import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
-import DonneeClient.ClientTmp;
+import DonneeClient.Client;
 import clientTCP.ClientTCP;
 import ServeurTCP.ServeurTCP;
 import aquarium.gui.AquariumWindow;
@@ -53,7 +53,7 @@ public class Main{
 			try{	
 				
                             //Preparation des données clients
-                            ClientTmp c = new ClientTmp();  
+                            Client c = new Client();  
                             int numClient = 0;
                             
                             while(true){

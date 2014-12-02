@@ -5,7 +5,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 
-import DonneeClient.ClientTmp;
+import DonneeClient.Client;
 import clientTCP.ClientTCP;
 import ServeurTCP.ServeurTCP;
 import aquarium.gui.AquariumWindow;
