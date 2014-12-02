@@ -72,9 +72,15 @@ public class Aquarium extends JPanel{
 	 * List of Aquarium items to be rendered in the Aquarium
 	 */
 	private List<AquariumItem> items = new ArrayList<AquariumItem>();
+        
+        /**
+         * Indice du poisson
+         */
+        private int LastFish;
 
 	public Aquarium() {
 
+            LastFish = 0;
 		for (int i = 0; i < NB_STONES; i++) {
 			AquariumItem ai = new Seastone();
 			if (ai.sink(items))
@@ -88,6 +94,7 @@ public class Aquarium extends JPanel{
 		
 		
 		for (int i = 0; i < 9; i++) {
+                        LastFish++;
 			MobileItem ai = new Fish();
 			if (ai.sink(items))
 				items.add(ai);
@@ -103,12 +110,14 @@ public class Aquarium extends JPanel{
 	}
 	
 	/**
-	 * Ajoute un element poisson dans l'aquarium
+	 * Ajoute un element poisson dans l'aquarium et renvoi l'indice du poisson
 	 */
-	public void addFish(){
+	public int addFish(){
                 MobileItem it = new Fish();
 		if(it.sink(items))
                         this.items.add(it);
+                LastFish++;
+                return LastFish;
 	}
 	
 	/**
