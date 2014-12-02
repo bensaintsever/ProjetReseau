@@ -28,7 +28,7 @@ public class ServeurThread {
 	public void accepterCommunication(){
 		serveur.accept();
 		numClient++;
-		 ClientTmp c = new ClientTmp(numClient);
+		//c.addClient(numClient);
 	}
 	
 	public void Thread(){
