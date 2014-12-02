@@ -5,7 +5,7 @@ import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
-import DonneeClient.Client;
+import DonneeClient.ClientTmp;
 import clientTCP.ClientTCP;
 import ServeurTCP.ServeurTCP;
 import aquarium.gui.AquariumWindow;
@@ -36,8 +36,9 @@ public class Main{
                 /* Ajouter au client le parametre qui designe le nom d'un machine (realiser un getByname peut etre)*/
 		
 		
-                 //Preparation des données clients
-                Client c = new Client();            
+                 
+                
+                          
                 
                	
 		ServeurTCP serveur = new ServeurTCP(7763);
@@ -50,13 +51,22 @@ public class Main{
                         
 			
 			try{	
-					
-                            int i = 0;
+				
+                            //Preparation des données clients
+                            ClientTmp c = new ClientTmp();  
+                            int numClient = 0;
+                            
                             while(true){
                                     //Ecoute du serveur
                                     serveur.accept();
                                   
+                                    //Creation d'un poisson et ajout donnée client
+                                    aquarium.addFish();
                                     
+                                    c.addClient(numClient);
+                                           
+                                    
+                                    //Premier contact avec le(s) client(s)
                                     ServeurInit sInit = new ServeurInit(serveur);
                                     sInit.start();
                                     
@@ -65,10 +75,10 @@ public class Main{
                                     sCom.start();
                                     *************************************/
                                     
-                                    //Ajout d'un poisson client
-                                    c.addClient();
                                     
-                 
+                                    
+                                    
+                                    numClient++;
                             }
                             
                         }catch(RuntimeException e){
