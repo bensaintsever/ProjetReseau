@@ -1,9 +1,13 @@
 package ServeurThread;
 import ServeurTCP.ServeurTCP;
+import Protocole.*;
+import aquarium.items.Fish;
 
 
 public class ServeurInit extends Thread{
 	private ServeurTCP serveur;
+        private Fish f;
+        private int idFish;
 	
         
         public ServeurInit(){}
@@ -22,8 +26,12 @@ public class ServeurInit extends Thread{
              * Le client demande d'initier un poisson
             */
             String commande1 = serveur.receive();
-            serveur.send("Coucou");
             
+            serveur.send(new Protocole().addFish(
+                    idFish, f.getWidth(), f.getPosition().x,f.getPosition().y));
+                    
+            
+           
             
         }
         
