@@ -1,21 +1,18 @@
 package aquarium;
 
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.ServerSocket;
-import java.net.Socket;
 import java.util.ArrayList;
 import DonneeClient.Client;
-import clientTCP.ClientTCP;
 import ServeurTCP.ServeurTCP;
 import aquarium.gui.AquariumWindow;
 import aquarium.gui.Aquarium;
 import aquarium.items.Fish;
-import ServeurThread.ServeurInit;
+import ServeurThread.*;
+import java.net.Socket;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 
 /**
+ * 
  * Starting point of the Aquarium application
  */
 public class Main{
@@ -35,11 +32,6 @@ public class Main{
 		
                 /* Ajouter au client le parametre qui designe le nom d'un machine (realiser un getByname peut etre)*/
 		
-		
-                 
-                
-                          
-                
                	
 		ServeurTCP serveur = new ServeurTCP(7763);
 
@@ -59,21 +51,19 @@ public class Main{
                             while(true){
                                     //Ecoute du serveur
                                     serveur.accept();
-                                  
-                                    //Creation d'un poisson et ajout donnée client
-                                    aquarium.addFish();
                                     
                                     c.addClient(numClient);
-                                           
+                                    Socket sockClient = c.getSocketClient();
                                     
-                                    //Premier contact avec le(s) client(s)
-                                    ServeurInit sInit = new ServeurInit(serveur);
+                                    //Modifier surement l'ajout de poisson (voir modifier l'utilisation protocole)
+                                    //Premier contact avec le(s) client(s) (possible ajout de poisson)
+                                    ServeurInit sInit = new ServeurInit(serveur,aquarium, sockClient);
                                     sInit.start();
                                     
-                                    /************** WIP ******************
-                                    ServeurCommunication sCom = new ServeurCom(serveur);
+                                    /************** WIP ******************/
+                                    ServeurCommunication sCom = new ServeurCommunication(serveur,sockClient);
                                     sCom.start();
-                                    *************************************/
+                                    /*************************************/
                                     
                                     
                                     

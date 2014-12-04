@@ -1,51 +1,106 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Protocole;
 
 /**
- *
+ *  Classe permettant le référencement du protocole de communication.
  * @author benjamin
  */
 public class Protocole {
     
+    /**
+     * Constructeur par défaut
+     */
     public Protocole(){
         
     }
     
-    //addFish!numFish!width!x!y 
-    
+    /**
+     * Ajout d'un poisson
+     * @param IdFish
+     *          Identifiant du poisson
+     * @param width
+     *          Taille du poisson
+     * @param x
+     *          Coordonnée x du poisson 
+     * @param y
+     *          Coordonnée y du poisson 
+     * @return 
+     *          Retourne sous forme de chaine de caractère la trame a transmettre
+     */
     public String addFish(int IdFish, int width, int x, int y){
         
-        return "aquarium!addFish!"+Integer.toString(IdFish)+Integer.toString(width)+Integer.toString(x)+Integer.toString(y);
+        return "aquarium!addFish!"+Integer.toString(IdFish)+"!"+Integer.toString(width)+"!"+Integer.toString(x)+"!"+Integer.toString(y);
     }
     
-    //removeFish!numFish
+  
+    /**
+     * Supprime un poisson
+     * @param IdFish
+     *          Identifiant du poisson
+     * @return 
+     *          Retourne sous forme de chaine de caractère la trame a transmettre
+     */
     public String removeFish(int IdFish){
         return "aquarium!removefish"+IdFish;
     }
     
-    //moveFish!numFish!x!y 
+    /**
+     * Deplacer un poisson
+     * @param IdFish
+     *           Identifiant du poisson
+     * @param x
+     *          Coordonnée x du poisson 
+     * @param y
+     *          Coordonnée y du poisson 
+     * @return 
+     *          Retourne sous forme de chaine de caractère la trame a transmettre
+     */
     public String moveFish(int IdFish, int x, int y){
         
-        return "aquarium!moveFish!"+Integer.toString(IdFish)+Integer.toString(x)+Integer.toString(y);
+        return "aquarium!moveFish!"+Integer.toString(IdFish)+"!"+Integer.toString(x)+"!"+Integer.toString(y);
     }
      
-    //setFishWidth!numFish!width
+    /**
+     * Modifier la taille d'un poisson
+     * @param IdFish
+     *          Identifiant du poisson
+     * @param width
+     *          Taille du poisson
+     * @return 
+     *          Retourne sous forme de chaine de caractère la trame a transmettre
+     */
     public String setFishWidth(int IdFish, int width){
-        return "aquarium!setFish!"+Integer.toString(IdFish)+Integer.toString(width);
+        return "aquarium!setFish!"+Integer.toString(IdFish)+"!"+Integer.toString(width);
     }
      
-     //addStone!width!x!y 
+    /**
+     * Ajout d'une pierre
+     * @param width
+     *          Taille de la pierre
+     * @param x
+     *          Coordonnée x de la pierre 
+     * @param y
+     *          Coordonnée y de la pierre
+     * @return 
+     *          Retourne sous forme de chaine de caractère la trame a transmettre
+     */
     public String addStone(int width, int x, int y){
-        return "aquarium!addStone!"+Integer.toString(width)+Integer.toString(x)+Integer.toString(y);
+        return "aquarium!addStone!"+Integer.toString(width)+"!"+Integer.toString(x)+"!"+Integer.toString(y);
     }
      
-    //addWeed!width!x!y 
+    /**
+     * Ajout d'une plante
+     * @param width
+     *          Taille de la plante
+     * @param x
+     *          Coordonnée x de la plante
+     * @param y
+     *          Coodonnée y de la plante
+     * @return 
+     *          Retourne sous forme de chaine de caractère la trame a transmettre
+     */
+     
     public String addWeed(int width, int x, int y){
-        return "aquarium!addWeed!"+Integer.toString(width)+Integer.toString(x)+Integer.toString(y);
+        return "aquarium!addWeed!"+Integer.toString(width)+"!"+Integer.toString(x)+"!"+Integer.toString(y);
     }
     
     

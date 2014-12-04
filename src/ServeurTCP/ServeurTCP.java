@@ -56,14 +56,14 @@ public class ServeurTCP {
 		System.out.println(e.toString());}
 	}
 	
-	public String receive(){
+	public String receive(Socket client){
 		try{
 			in = new BufferedReader(new InputStreamReader(client.getInputStream()));
 				return in.readLine();
 		} catch(Exception e) {System.out.println("receive failed"); return null;}
 	}
 	
-	public void closeClient(){
+	public void closeClient(Socket client){
 		try{
 			client.close();
 		} catch(Exception e){}

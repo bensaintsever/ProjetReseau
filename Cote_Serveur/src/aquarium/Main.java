@@ -29,7 +29,7 @@ public class Main {
 		/*Autoriser le client a avoir son poisson
 		si on recois une demande de move alors on move le poisson vers un target correspondant*/
 		
-                /* Ajouter au client le parametre qui designe le nom d'un machien (realiser un getByname peut etre)*/
+                /* Ajouter au client le parametre qui designe le nom d'un machine (realiser un getByname peut etre)*/
 		
 		
                 
@@ -46,11 +46,13 @@ public class Main {
 		
                 //Preparation des données clients
                 Client c = new Client();
-				
+			
 		
                 
                 //AJOUTER THREAD ! + SYNCHRO !
                 /**************** WIP *****************/
+                
+                
                 
                 /**************************************/
                 
